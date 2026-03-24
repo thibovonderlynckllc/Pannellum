@@ -2,6 +2,16 @@
 
 Panorama viewer sources imported for local development and custom tours. The sections below are the upstream documentation.
 
+## Quick start (one working demo)
+
+From the repository root:
+
+```bash
+python3 -m http.server
+```
+
+Open [http://localhost:8000/](http://localhost:8000/) — you get a full-page demo using `examples/examplepano.jpg` and the standalone viewer (`src/standalone/pannellum.htm`). Everything else in this repo is optional (more examples, build tools, tests).
+
 [![CI](https://github.com/mpetroff/pannellum/actions/workflows/ci.yaml/badge.svg)](https://github.com/mpetroff/pannellum/actions/workflows/ci.yaml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3334433.svg)](https://doi.org/10.5281/zenodo.3334433)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.01628/status.svg)](https://doi.org/10.21105/joss.01628)
