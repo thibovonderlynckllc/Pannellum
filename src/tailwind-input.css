@@ -26,6 +26,65 @@
     display: none !important;
   }
 
+  /*
+   * Info- en scene-hotspots: zelfde gradient + cyaan rand als de stippen onderaan.
+   * Sprite uitschakelen; wit teken via ::before.
+   */
+  #container .pnlm-hotspot.pnlm-info,
+  #container .pnlm-hotspot.pnlm-scene {
+    position: relative;
+    cursor: pointer;
+    background-image: none !important;
+    background: linear-gradient(145deg, #1a9b8f 0%, #2aab7a 45%, #3dd68c 100%) !important;
+    box-shadow:
+      0 0 0 1px rgba(130, 220, 230, 0.95),
+      0 4px 14px rgba(0, 0, 0, 0.42);
+    transition:
+      filter 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  #container .pnlm-hotspot.pnlm-info:hover,
+  #container .pnlm-hotspot.pnlm-scene:hover {
+    background-color: transparent !important;
+    filter: brightness(1.08);
+    box-shadow:
+      0 0 0 1px rgba(160, 235, 245, 0.98),
+      0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  #container .pnlm-hotspot.pnlm-info::before {
+    content: "i";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%, -52%);
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  #container .pnlm-hotspot.pnlm-scene::before {
+    content: "\2192";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    pointer-events: none;
+  }
+
   .scene-label {
     @apply pointer-events-none absolute bottom-[4.25rem] left-1/2 z-[5] m-0 -translate-x-1/2 p-0 text-center text-xs font-medium text-white;
   }

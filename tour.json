@@ -12,35 +12,124 @@
       "panorama": "assets/examplepano.jpg",
       "pitch": -3,
       "yaw": -25,
-      "hfov": 100
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "id": "receptie-info",
+          "pitch": -10,
+          "yaw": 78,
+          "type": "info",
+          "text": "Welkom bij de rondleiding. Gebruik de stippen onderaan om van scène te wisselen."
+        },
+        {
+          "id": "receptie-naar-lab",
+          "pitch": -6,
+          "yaw": -48,
+          "type": "scene",
+          "text": "Naar laboratorium",
+          "sceneId": "scene2",
+          "targetPitch": -2,
+          "targetYaw": 42,
+          "targetHfov": 95
+        }
+      ]
     },
     "scene2": {
       "title": "Ons laboratorium",
       "panorama": "assets/examplepano.jpg",
       "pitch": -2,
       "yaw": 42,
-      "hfov": 95
+      "hfov": 95,
+      "hotSpots": [
+        {
+          "id": "lab-info",
+          "pitch": -8,
+          "yaw": 95,
+          "type": "info",
+          "text": "Hier vindt u het laboratorium. Klik op de pijl-hotspots om naar een andere ruimte te gaan."
+        },
+        {
+          "id": "lab-naar-productie",
+          "pitch": -5,
+          "yaw": -70,
+          "type": "scene",
+          "text": "Naar productie",
+          "sceneId": "scene3",
+          "targetPitch": -4,
+          "targetYaw": 110,
+          "targetHfov": 105
+        }
+      ]
     },
     "scene3": {
       "title": "Productie",
       "panorama": "assets/examplepano.jpg",
       "pitch": -4,
       "yaw": 110,
-      "hfov": 105
+      "hfov": 105,
+      "hotSpots": [
+        {
+          "id": "productie-info",
+          "pitch": -12,
+          "yaw": 25,
+          "type": "info",
+          "text": "Productiezone — hier wordt gewerkt aan de eindproducten."
+        }
+      ]
     },
     "scene4": {
       "title": "Magazijn",
       "panorama": "assets/examplepano.jpg",
       "pitch": -2,
       "yaw": 180,
-      "hfov": 100
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "id": "magazijn-info",
+          "pitch": -7,
+          "yaw": 210,
+          "type": "info",
+          "text": "Magazijn en opslag."
+        },
+        {
+          "id": "magazijn-naar-terras",
+          "pitch": -4,
+          "yaw": -95,
+          "type": "scene",
+          "text": "Naar terras",
+          "sceneId": "scene5",
+          "targetPitch": -5,
+          "targetYaw": -140,
+          "targetHfov": 100
+        }
+      ]
     },
     "scene5": {
       "title": "Terras",
       "panorama": "assets/examplepano.jpg",
       "pitch": -5,
       "yaw": -140,
-      "hfov": 100
+      "hfov": 100,
+      "hotSpots": [
+        {
+          "id": "terras-info",
+          "pitch": -9,
+          "yaw": 20,
+          "type": "info",
+          "text": "Terras — buitenruimte en ontspanning."
+        },
+        {
+          "id": "terras-naar-start",
+          "pitch": -6,
+          "yaw": 165,
+          "type": "scene",
+          "text": "Terug naar receptie",
+          "sceneId": "scene1",
+          "targetPitch": -3,
+          "targetYaw": -25,
+          "targetHfov": 100
+        }
+      ]
     }
   }
 }

@@ -29,12 +29,14 @@ Open [http://localhost:8000/](http://localhost:8000/). While editing styles, run
 | Path                     | Purpose                                                         |
 | ------------------------ | --------------------------------------------------------------- |
 | `index.html`             | Embeds the viewer, scene title overlay, dot navigation          |
-| `tour.json`              | Tour: `scenes`, `sceneOrder`, `default.firstScene`, fade timing |
+| `tour.json`              | Tour: `scenes`, `sceneOrder`, `hotSpots` (`info`, `scene`, …)   |
 | `assets/`                | Demo panoramas, preview image, **built** `tailwind.css`         |
 | `src/tailwind-input.css` | Tailwind entry (edit here, then `npm run build:css`)            |
 | `src/`                   | Viewer: `js/`, `css/`, `standalone/`                            |
 
-Edit `tour.json` to add scenes, titles, and panorama paths. The default starting scene is `default.firstScene` (currently `scene2`, “Ons laboratorium”).
+Edit `tour.json` to add scenes, titles, panorama paths, and per-scene **`hotSpots`**: use `type: "info"` with `text` for tooltips, and `type: "scene"` with `sceneId` plus optional `targetPitch` / `targetYaw` / `targetHfov` to jump between scenes. See [Pannellum’s JSON reference](https://pannellum.org/documentation/reference/json-config-parameters/).
+
+The default starting scene is `default.firstScene` (currently `scene2`, “Ons laboratorium”).
 
 ## License
 
