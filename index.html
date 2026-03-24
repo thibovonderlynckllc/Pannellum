@@ -1,25 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pannellum — demo</title>
-    <style>
-        html, body { height: 100%; margin: 0; background: #111; }
-        iframe {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    </style>
+    <title>Rondleiding</title>
+    <link rel="stylesheet" href="src/css/pannellum.css" />
+    <link rel="stylesheet" href="src/standalone/standalone.css" />
+    <link rel="stylesheet" href="assets/tailwind.css" />
 </head>
+
 <body>
-    <!-- Paths in the hash are relative to src/standalone/pannellum.htm -->
-    <iframe
-        title="Pannellum panorama"
-        allowfullscreen
-        src="src/standalone/pannellum.htm#panorama=../../assets/examplepano.jpg&amp;title=Jordan%20Pond&amp;author=Matthew%20Petroff&amp;preview=../../assets/examplepano-preview.jpg"
-    ></iframe>
+    <div class="viewer-wrap">
+        <div id="container"></div>
+        <p class="scene-label" id="sceneLabel" hidden aria-hidden="true"></p>
+        <nav class="dots" id="dotsNav" aria-label="Scènes"></nav>
+    </div>
+
+    <script src="src/js/libpannellum.js"></script>
+    <script src="src/js/pannellum.js"></script>
+    <script>
+        (function () {
+            var viewer;
+            var tour;
+            var sceneOrder;
+
+            function labelForScene(id) {
+                return (tour.scenes[id] && tour.scenes[id].title) ? tour.scenes[id].title : id;
+            }
+
+            function setActiveDot(sceneId) {
+                var buttons = document.querySelectorAll("#dotsNav .dot");
+                var idx = sceneOrder.indexOf(sceneId);
+                for (var i = 0; i < buttons.length; i++) {
+                    var on = i === idx;
+                    buttons[i].setAttribute("aria-current", on ? "true" : "false");
+                    buttons[i].setAttribute("aria-pressed", on ? "true" : "false");
+                }
+            }
+
+            function showHoverTitle(sceneId) {
+                var el = document.getElementById("sceneLabel");
+                el.textContent = labelForScene(sceneId);
+                el.removeAttribute("hidden");
+                el.setAttribute("aria-hidden", "false");
+            }
+
+            function hideHoverTitle() {
+                var el = document.getElementById("sceneLabel");
+                el.textContent = "";
+                el.setAttribute("hidden", "");
+                el.setAttribute("aria-hidden", "true");
+            }
+
+            function buildDots() {
+                var nav = document.getElementById("dotsNav");
+                nav.innerHTML = "";
+
+                nav.addEventListener("mouseleave", hideHoverTitle);
+                nav.addEventListener("focusout", function (e) {
+                    if (!nav.contains(e.relatedTarget)) {
+                        hideHoverTitle();
+                    }
+                });
+
+                for (var i = 0; i < sceneOrder.length; i++) {
+                    (function (sceneId) {
+                        var slot = document.createElement("span");
+                        slot.className = "dot-slot";
+                        var btn = document.createElement("button");
+                        btn.type = "button";
+                        btn.className = "dot";
+                        btn.setAttribute("aria-label", labelForScene(sceneId));
+                        btn.addEventListener("mouseenter", function () {
+                            showHoverTitle(sceneId);
+                        });
+                        btn.addEventListener("click", function () {
+                            if (viewer && viewer.getScene() !== sceneId) {
+                                viewer.loadScene(sceneId);
+                            }
+                        });
+                        btn.addEventListener("focus", function () {
+                            showHoverTitle(sceneId);
+                        });
+                        slot.appendChild(btn);
+                        nav.appendChild(slot);
+                    })(sceneOrder[i]);
+                }
+            }
+
+            fetch("tour.json")
+                .then(function (r) {
+                    if (!r.ok) throw new Error("tour.json kon niet geladen worden");
+                    return r.json();
+                })
+                .then(function (cfg) {
+                    tour = cfg;
+                    sceneOrder = cfg.sceneOrder || Object.keys(cfg.scenes || {});
+                    delete cfg.sceneOrder;
+
+                    cfg.escapeHTML = true;
+                    cfg.targetBlank = true;
+
+                    viewer = pannellum.viewer("container", cfg);
+                    buildDots();
+                    setActiveDot(viewer.getScene());
+
+                    viewer.on("scenechange", function (sceneId) {
+                        setActiveDot(sceneId);
+                    });
+                })
+                .catch(function (err) {
+                    document.getElementById("container").innerHTML =
+                        '<div class="pnlm-info-box"><p>Kon de tour niet laden. Gebruik een lokale server (bijv. <code>python3 -m http.server</code>).</p></div>';
+                    console.error(err);
+                });
+        })();
+    </script>
 </body>
+
 </html>

@@ -4,5 +4,16 @@
   "version": "2.5.6",
   "license": "MIT",
   "private": true,
-  "keywords": ["panorama", "viewer"]
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/tailwind.css",
+    "watch:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/tailwind.css --watch"
+  },
+  "keywords": [
+    "panorama",
+    "viewer"
+  ],
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
 }

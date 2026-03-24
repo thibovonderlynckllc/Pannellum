@@ -1,0 +1,46 @@
+{
+  "default": {
+    "firstScene": "scene2",
+    "sceneFadeDuration": 900,
+    "author": "Demo",
+    "preview": "assets/examplepano-preview.jpg"
+  },
+  "sceneOrder": ["scene1", "scene2", "scene3", "scene4", "scene5"],
+  "scenes": {
+    "scene1": {
+      "title": "Receptie",
+      "panorama": "assets/examplepano.jpg",
+      "pitch": -3,
+      "yaw": -25,
+      "hfov": 100
+    },
+    "scene2": {
+      "title": "Ons laboratorium",
+      "panorama": "assets/examplepano.jpg",
+      "pitch": -2,
+      "yaw": 42,
+      "hfov": 95
+    },
+    "scene3": {
+      "title": "Productie",
+      "panorama": "assets/examplepano.jpg",
+      "pitch": -4,
+      "yaw": 110,
+      "hfov": 105
+    },
+    "scene4": {
+      "title": "Magazijn",
+      "panorama": "assets/examplepano.jpg",
+      "pitch": -2,
+      "yaw": 180,
+      "hfov": 100
+    },
+    "scene5": {
+      "title": "Terras",
+      "panorama": "assets/examplepano.jpg",
+      "pitch": -5,
+      "yaw": -140,
+      "hfov": 100
+    }
+  }
+}
